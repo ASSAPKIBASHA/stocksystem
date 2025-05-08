@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
     ];
@@ -44,5 +44,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
+    public function stockIns(){
+        return $this->hasMany(StockIn::class);
+    }
+    
+    public function stockOuts() {
+        return $this->hasMany(StockOut::class);
     }
 }
